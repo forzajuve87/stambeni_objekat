@@ -1,0 +1,30 @@
+package stambeni_objekat_vezba;
+
+public class Kuca extends StambeniObjekat {
+	
+	private Stan stan;
+	
+	// kostruktori
+	public Kuca(String adresa, Stan stan) {
+		super(adresa);
+		this.stan = stan;
+	}
+	public Kuca(String adresa, double povrsina, int brojStanara) {
+		super(adresa);
+		this.stan = new Stan(povrsina, brojStanara);
+	}
+	
+	//polimorfni metod
+	public double porez(double cena_po_kvadratu) {
+		if(this.stan.getBrojStanara()<=2) {
+			return this.stan.getPovrsina() * cena_po_kvadratu;
+		}
+		return this.stan.getPovrsina() * cena_po_kvadratu * (1 - (this.stan.getBrojStanara() - 2) * 0.05);
+	}
+	
+	public String toString() {
+		return "Kuca:\nAdresa: " + super.getAdresa() + "\nPovrsina stana je " + stan.getPovrsina() + 
+				".\nBroj stanara je: " + stan.getBrojStanara() + ".";
+	}
+
+}
