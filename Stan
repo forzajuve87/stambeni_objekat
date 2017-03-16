@@ -1,0 +1,38 @@
+package stambeni_objekat_vezba;
+
+public class Stan {
+	
+	private double povrsina;
+	private int broj_stanara;
+	
+	// kostruktori
+	public Stan(double povrsina, int brojStanara) {
+		this.povrsina = povrsina;
+		this.broj_stanara = brojStanara;
+	}
+	
+	public Stan(final Stan s) {
+		this(s.povrsina, s.broj_stanara);
+	}
+	
+	
+	// set i get metode
+	public void setPovrsina(double povrsina) {
+		this.povrsina = povrsina;
+	}
+	public void setBrojStanara(int brojStanara) {
+		this.broj_stanara = brojStanara;
+	}
+	public double getPovrsina() {
+		return this.povrsina;
+	}
+	public int getBrojStanara() {
+		return this.broj_stanara;
+	}
+	
+	
+	public String toString() {
+		return "Povrsina stana je " + this.povrsina + " m^2." + "\nBroj stanara je " + this.broj_stanara + ".";
+	}
+
+}
