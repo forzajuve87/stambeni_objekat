@@ -1,0 +1,42 @@
+package stambeni_objekat_vezba;
+
+public class Zgrada extends StambeniObjekat{
+	
+	private Stan niz[];
+	
+	// kostruktor
+	public Zgrada(String adresa, Stan niz[]) {
+		super(adresa);
+		this.niz = new Stan[niz.length];
+		for(int i=0; i<niz.length; i++) {
+			this.niz[i] = new Stan(niz[i]);	
+		}
+	}
+	
+	// polimorfni metod
+	public double porez(double cena_po_kvadratu) {
+		double ukupan_porez = 0.0;
+
+		for(int i=0; i<niz.length; i++) {
+			if(niz[i].getBrojStanara()<=2) {
+				ukupan_porez = ukupan_porez + (niz[i].getPovrsina() * cena_po_kvadratu);
+			}
+			else{
+				ukupan_porez = ukupan_porez + (niz[i].getPovrsina() * cena_po_kvadratu * (1 - (niz[i].getBrojStanara() - 2) * 0.05));
+			}
+		}
+		
+		return ukupan_porez;
+	}
+	
+	public String toString() {
+		StringBuffer s = new StringBuffer();
+		s.append("Zgrada:\nAdresa: ").append(super.getAdresa()).append("\n");
+		
+		for(int i=0; i<this.niz.length; i++) {
+			s.append((i+1)).append(". stan:\n").append(niz[i]).append("\n");
+		}
+		return  s.toString(); 
+	}
+
+}
