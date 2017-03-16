@@ -1,0 +1,66 @@
+package stambeni_objekat_vezba;
+
+import java.util.Scanner;
+
+public class TestStambeniObjekat {
+	
+	public static void main(String args[]) {
+		
+		Stan stan;
+		StambeniObjekat objekat;
+		double povrsina, cena_poreza;
+		int broj_stanara, broj_stanova;
+		String adresa_objekta, stambeni_objekat;
+			
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("-------------PRAG-------------");
+		System.out.println("Unesite povrsinu stana: ");
+		povrsina = sc.nextDouble();
+		System.out.println("Unesite broj stanara u stana: ");
+		broj_stanara = sc.nextInt();
+		stan = new Stan(povrsina, broj_stanara);
+		System.out.println(stan);
+		System.out.println("------------------------------");
+		
+		System.out.println("Unesite adresu stambenog objekta: ");
+		sc.nextLine();
+		adresa_objekta = sc.nextLine();
+		System.out.println("Unesite stambeni objekat koji zelite (k-kuca, z-zgrada): ");
+		stambeni_objekat = sc.next();
+		
+		if(stambeni_objekat.equals("k")) {
+			System.out.println("Unesite povrsinu kuce: ");
+			povrsina = sc.nextDouble();
+			System.out.println("Unesite broj stanara: ");
+			broj_stanara = sc.nextInt();
+			objekat = new Kuca(adresa_objekta, new Stan(povrsina, broj_stanara));
+			System.out.println("Unesite cenu poreza po kvadratu: ");
+			cena_poreza = sc.nextDouble();
+			System.out.println(objekat);
+			System.out.println("Ukupni porez koji treba da bude placen je: " + objekat.porez(cena_poreza));
+		}
+		else{
+			System.out.println("Unesite broj stanova zgrade: ");
+			broj_stanova = sc.nextInt();
+			Stan niz[] = new Stan[broj_stanova];
+			
+			for(int i=0; i<niz.length; i++) {
+				System.out.println("Unesite povrsinu " + (i+1) + ". stana:");
+				povrsina = sc.nextDouble();
+				System.out.println("Unesite broj stanara " + (i+1) + ". stana:");
+				broj_stanara = sc.nextInt();
+				niz[i] = new Stan(povrsina, broj_stanara);
+			}
+			System.out.println("Unesite cenu poreza po kvadratu: ");
+			cena_poreza = sc.nextDouble();
+			
+			objekat = new Zgrada(adresa_objekta, niz);
+			System.out.println(objekat);
+			System.out.println("Ukupni porez koji treba da bude placen je: " + objekat.porez(cena_poreza));
+		}
+		
+		sc.close();
+	}
+
+}
